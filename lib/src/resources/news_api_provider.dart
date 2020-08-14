@@ -1,10 +1,11 @@
 import 'package:http/http.dart' show Client;
 import 'dart:convert';
 import '../models/item_model.dart';
+import 'repository.dart';
 
 final baseUrl = 'https://hacker-news.firebaseio.com/v0';
 
-class NewsApiProvider {
+class NewsApiProvider implements Source {
   Client client = Client();
 
   Future<List<int>> fetchTopIds() async {
@@ -21,3 +22,5 @@ class NewsApiProvider {
     return Item.fromJson(parsedJson);
   }
 }
+
+final newsApiProvider = NewsApiProvider();
